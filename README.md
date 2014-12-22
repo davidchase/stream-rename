@@ -23,7 +23,7 @@ Gulp Usage
 ==========
 ```js
 // create a stream
-var globSteam = require('gulp');
+var gulp = require('gulp');
 gulp.src('./app.js')
        .pipe(streamRename({
            basename: 'compressed',
