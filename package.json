@@ -4,14 +4,21 @@
   "description": "A transform to rename files/folders in a stream",
   "main": "index.js",
   "scripts": {
-    "test": "tape"
+    "test": "tape test.js"
   },
   "keywords": [
     "rename",
     "transform",
-    "mv"
+    "stream rename"
   ],
-  "author": "David Chase",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/davidchase/stream-rename.git"
+  },
+  "bugs": {
+    "url": "https://github.com/davidchase/stream-rename/issues"
+  },
+  "author": "David Chase <davidchase03@gmail.com>",
   "license": "MIT",
   "dependencies": {
     "through2": "^0.6.3"
