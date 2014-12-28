@@ -1,10 +1,10 @@
 'use strict';
 
-var gutil = require('gulp-util');
 var globSteam = require('glob-stream');
 var path = require('path');
 var test = require('tape');
 var streamRename = require('./index');
+var buffer = require('./buffer');
 
 test('simple rename keeps extension', function(t) {
     t.plan(1);
@@ -13,7 +13,7 @@ test('simple rename keeps extension', function(t) {
         .pipe(streamRename({
             basename: 'what'
         }))
-        .pipe(gutil.buffer(function(err, files) {
+        .pipe(buffer(function(err, files) {
             if (err) {
                 throw new Error(err);
             }
@@ -21,18 +21,50 @@ test('simple rename keeps extension', function(t) {
         }));
 });
 
-test('simple prefix', function(t){
+test('simple prefix', function(t) {
     t.plan(1);
     globSteam
         .create('./package.json')
         .pipe(streamRename({
             prefix: 'hello-'
         }))
-        .pipe(gutil.buffer(function(err, files) {
+        .pipe(buffer(function(err, files) {
             if (err) {
                 throw new Error(err);
             }
             t.equal(path.basename(files[0].path), 'hello-package.json');
+        }));
+
+});
+
+test('simple suffix', function(t) {
+    t.plan(1);
+    globSteam
+        .create('./package.json')
+        .pipe(streamRename({
+            suffix: '-ing'
+        }))
+        .pipe(buffer(function(err, files) {
+            if (err) {
+                throw new Error(err);
+            }
+            t.equal(path.basename(files[0].path), 'package-ing.json');
+        }));
+
+});
+
+test('simple extension', function(t) {
+    t.plan(1);
+    globSteam
+        .create('./package.json')
+        .pipe(streamRename({
+            extname: '.js'
+        }))
+        .pipe(buffer(function(err, files) {
+            if (err) {
+                throw new Error(err);
+            }
+            t.equal(path.basename(files[0].path), 'package.js');
         }));
 
 });
