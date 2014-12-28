@@ -3,14 +3,15 @@
 var through = require('through2');
 var path = require('path');
 
+// build string to rename file/directory
+// based on user options
 var _stringBuilder = function(options, oldBase) {
-    var basename;
     var prefix = options.prefix || '';
     var suffix = options.suffix || '';
-    var hasExtname = path.extname(oldBase);
-    var extname = options.extname || hasExtname;
-    oldBase = hasExtname ? oldBase.replace(/\.[a-z]*/, '') : oldBase;
-    basename = options.basename || oldBase;
+    var getExtname = path.extname(oldBase);
+    var extname = options.extname || getExtname;
+    var basename = options.basename || oldBase;
+    basename = getExtname ? basename.replace(/\.[a-z]*/, '') : basename;
     return prefix + basename + suffix + extname;
 };
 

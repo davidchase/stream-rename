@@ -3,9 +3,8 @@ Stream Rename
 
 A simple stream transform that renames files/directories.
 
-This module makes no assumptions how you read or write the stream
+This module makes no assumptions how you read or write streams.
 
-but only how you transform it.
 
 Usage
 =====
@@ -19,7 +18,7 @@ globSteam
            basename: 'compressed',
            extname: '.min.js'
        }))
-       .pipe(process.stdout);
+       .pipe(process.stdout); // path will contain compressed.min.js
 ```
 
 Gulp Usage
@@ -33,5 +32,25 @@ gulp.src('./app.js')
            basename: 'compressed',
            extname: '.min.js'
        }))
-       .pipe(gulp.dest('./dest'));
+       .pipe(gulp.dest('./dest')); // path will contain compressed.min.js
 ```
+
+API
+===
+
+```js
+var streamRename = require('stream-rename');
+```
+
+var sr = streamRename(opts={})
+------
+
+`opts.prefix` a prefix to the new or original basename. ie: `pre-`
+
+`opts.basename` is the new name of the file or directory you want to change.
+
+`opts.extname` is a new extension you want to add to the basename. ie: `.js`
+
+`opts.suffix` a suffix to the new or original basename. ie: `-ing`
+
+returns a `through` stream to `pipe` to a write stream.

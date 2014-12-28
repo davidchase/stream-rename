@@ -1,6 +1,6 @@
 {
   "name": "stream-rename",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "A transform to rename files/folders in a stream",
   "main": "index.js",
   "scripts": {
@@ -14,11 +14,11 @@
   "author": "David Chase",
   "license": "MIT",
   "dependencies": {
-    "gulp-util": "^3.0.1",
     "through2": "^0.6.3"
   },
   "devDependencies": {
     "glob-stream": "^3.1.18",
-    "tape": "^3.0.3"
+    "tape": "^3.0.3",
+    "gulp-util": "^3.0.1"
   }
 }
