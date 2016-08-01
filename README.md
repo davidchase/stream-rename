@@ -1,7 +1,7 @@
 Stream Rename
 =============
 
-A simple stream transform that renames files/directories.
+> A simple stream transform that renames files/directories.
 
 This module makes no assumptions how you read or write streams.
 
